@@ -1,0 +1,91 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@using System.Collections.Generic;
+@using Lab3_ShoppingCart.Models;
+@model List<Product>;
+
+
+
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  display: block;
+}
+
+.sidenav li {
+    list-style : none;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 250px; /* Same as the width of the sidenav */
+}
+</style>
+
+
+<div>
+    <div></div>
+    <div>
+        <div class="sidenav">
+            <ul>
+                    @foreach(Category c in ViewBag.Categories)
+                    {
+                        <li><a href="/Product/List/@c.CategoryId">@c.CategoryName</a></li>
+                    }
+                    <li><a href="/Product/List">All Categories</a></li>
+             </ul>
+        </div>
+        <div class="main">
+            <a href="/Product/Cart">View Cart</a><br />
+            List of Products
+            
+                  <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>UnitPrice</th>
+                            <th></th>
+                        </tr>
+                        @foreach(Product p in Model)
+                        {
+                        <tr>
+                            <td>@p.ProductId</td>
+                            <td>@p.ProductName</td>
+                            <td>@p.UnitPrice</td>
+                            <td>
+                            <a href="/Product/AddToCart/@p.ProductId">Add To Cart</a>
+                            </td>
+                        </tr>
+                        }
+                    </table>
+            
+        </div>
+    </div>
+</div>

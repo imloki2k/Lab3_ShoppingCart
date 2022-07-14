@@ -1,0 +1,46 @@
+﻿@using Lab3_ShoppingCart.Models
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<CartItems>;
+
+<a href="/Product/List">Back to List</a>
+@if(Model.Count != 0)
+{
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>UnitPrice</th>
+        <th>Quantity</th>
+        <th></th>
+    </tr>
+     @foreach(CartItems p in Model)
+     {
+        <tr>
+        <td>@p.ProductId</td>
+        <td>@p.ProductName</td>
+        <td>@p.UnitPrice</td>
+        <td>@p.quantity</td>
+        <td>
+            <a href="/Product/Remove/@p.ProductId">Remove</a>
+        </td>
+        </tr>
+     }
+     <tr></tr>
+     <tr>
+         <td>
+             <a href="/Product/Order">Check out</a>
+         </td>  
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+     </tr>
+</table>
+}else{
+    <h3>Giỏ hàng trống </h3>
+}
